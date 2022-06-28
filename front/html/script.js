@@ -1,10 +1,10 @@
-function Nouvellecard(image, nom, description){
+function Nouvellecard(id,image, nom, description){
     fetch("http://localhost:3000/api/products")
     .then(reponse => reponse.json())
     .then( data => {
         const Nouvellecard = document.createElement("a");
         Nouvellecard.classList.add("items");
-        Nouvellecard.innerHTML = `<img src="${image}"><h3>${nom}</h3><p>${description}</p>`;
+        Nouvellecard.innerHTML = `<a href=${id}></a><article><img src="${image}"><h3>${nom}</h3><p>${description}</p></article>`;
         document.getElementById("items").appendChild(Nouvellecard);
     })
 
@@ -19,6 +19,7 @@ fetch("http://localhost:3000/api/products")
         console.log(data.description);
         console.log(data.name);
         console.log(data.imageUrl);
+        console.log(data._id);
         // let description = data.description;
         // const element = document.getElementById("zonetexte");
         // element.innerHTML = description;
@@ -26,7 +27,7 @@ fetch("http://localhost:3000/api/products")
         // img.src= data.imageUrl;
         // const nom = document.getElementById("nom");
         // nom.innerHTML = data.name;
-        Nouvellecard(`${data.imageUrl}`,`${data.name}`,`${data.description}`);
+        Nouvellecard(`${data._id}`,`${data.imageUrl}`,`${data.name}`,`${data.description}`);
     
    }
    )
