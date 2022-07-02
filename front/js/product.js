@@ -28,11 +28,13 @@ const id = queryString_url_id.slice(4);
 fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => {
+    // on crée une constante pour le tableau contenant les couleurs
     const array = idrecup.colors;
     console.log(idrecup);
     itemid(idrecup.price);
     itemdescri(idrecup.description);
     itemnom(idrecup.name);
+    // On appel un forEach des élement de ce tableau appel la fonction itemcouleur de chaque élément
     array.forEach(element=> itemcouleur(element));
     }
     )
