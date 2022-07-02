@@ -4,6 +4,12 @@ function itemnom(nom){
     itemnom.innerHTML = `<h1>${nom}</h1>`;
     document.getElementById("title").appendChild(itemnom);
 }
+function itemimage(image, alt){ 
+    const itemimage = document.createElement("div");
+    itemimage.innerHTML = `<img src="${image}" alt="${alt}">`;
+    itemimage.classList= "item__img";
+    document.getElementsByClassName("item__img")[0].appendChild(itemimage);
+}
 function itemid(prix){ 
     const itemid = document.createElement("a");
     itemid.innerHTML = `<a>${prix}</a>`;
@@ -34,7 +40,8 @@ fetch(`http://localhost:3000/api/products/${id}`)
     itemid(idrecup.price);
     itemdescri(idrecup.description);
     itemnom(idrecup.name);
-    // On appel un forEach des élement de ce tableau appel la fonction itemcouleur de chaque élément
+    itemimage(idrecup.imageUrl, idrecup.altTxt);
+    // On appel un forEach des élement de ce tableau qui appel la fonction itemcouleur de chaque élément
     array.forEach(element=> itemcouleur(element));
     }
     )
