@@ -1,7 +1,7 @@
 // fonction
 function itemnom(nom){ 
-    const itemnom = document.createElement("h1");
-    itemnom.innerHTML = `<h1>${nom}</h1>`;
+    const itemnom = document.createElement("a");
+     itemnom.innerText = `${nom}`
     document.getElementById("title").appendChild(itemnom);
 }
 function itemimage(image, alt){ 
@@ -10,26 +10,32 @@ function itemimage(image, alt){
     itemimage.classList= "item__img";
     document.getElementsByClassName("item__img")[0].appendChild(itemimage);
 }
-function itemid(prix){ 
-    const itemid = document.createElement("a");
-    itemid.innerHTML = `<a>${prix}</a>`;
-    document.getElementById("price").appendChild(itemid);
+function itemprix(prix){ 
+    const itemprix = document.createElement("a");
+    itemprix.innerText = `${prix}`;
+    document.getElementById("price").appendChild(itemprix);
 }
 
 function itemdescri(description){   
     const itemdescri = document.createElement("p");
-    itemdescri.innerHTML = `<p>${description}</p>`;
+    itemdescri.innerText = `${description}`;
     document.getElementById("description").appendChild(itemdescri);
 }
 function itemcouleur(couleur){   
     const itemcouleur= document.createElement("option");
-    itemcouleur.innerHTML= `<value=>${couleur}</value>`;
+    // itemcouleur.innerHTML= `<value=>${couleur}</value>`;
+    itemcouleur.value= couleur;
+    itemcouleur.text=couleur;
     document.getElementById("colors").appendChild(itemcouleur);
 }
 
 // récupération de l'id + création html
 const queryString_url_id = window.location.search;
-const id = queryString_url_id.slice(4);
+const urlParams = new URLSearchParams(queryString_url_id);
+const id = urlParams.get('id');
+console.log(id);
+
+
 
 fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
@@ -37,14 +43,27 @@ fetch(`http://localhost:3000/api/products/${id}`)
     // on crée une constante pour le tableau contenant les couleurs
     const array = idrecup.colors;
     console.log(idrecup);
-    itemid(idrecup.price);
+    itemprix(idrecup.price);
     itemdescri(idrecup.description);
     itemnom(idrecup.name);
     itemimage(idrecup.imageUrl, idrecup.altTxt);
     // On appel un forEach des élement de ce tableau qui appel la fonction itemcouleur de chaque élément
     array.forEach(element=> itemcouleur(element));
+     // Mise en localstorage
+    addToCart.onclick= () =>{
+        const canape = {
+            couleur : colors.value,
+            titre   : idrecup.name,
+            id : `${id}`,         
+            prix : idrecup.price,
+        }
+        console.log(canape);
+        localStorage.setItem("item",JSON.stringify(canape));
+    }
     }
     )
 
 
-  
+   
+
+

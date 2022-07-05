@@ -14,14 +14,19 @@ function Nouvellecard(id,image, nom, description, altTxt){
 // x sera le code pour récupérer le prix ect
 fetch("http://localhost:3000/api/products")
 .then(reponse => reponse.json())
-.then( data => {
+ .then( data => {
    
 
-    data.forEach(function(product) {
-        console.log(product);
-        Nouvellecard(product._id, product.imageUrl, product.name, product.description, product.altTxt);
+//     data.forEach(function(product) {
+//         console.log(product);
+//         Nouvellecard(product._id, product.imageUrl, product.name, product.description, product.altTxt);
     
-   }
+//    }
+   data.forEach(product => 
+
+         Nouvellecard(product._id, product.imageUrl, product.name, product.description, product.altTxt)
+   
+          
 )  }
 )
 
