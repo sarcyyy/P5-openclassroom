@@ -34,6 +34,12 @@ const queryString_url_id = window.location.search;
 const urlParams = new URLSearchParams(queryString_url_id);
 const id = urlParams.get('id');
 console.log(id);
+let i = 0;
+if ( localStorage.length>0){
+    i = localStorage.length;
+}
+
+
 
 
 
@@ -51,14 +57,18 @@ fetch(`http://localhost:3000/api/products/${id}`)
     array.forEach(element=> itemcouleur(element));
      // Mise en localstorage
     addToCart.onclick= () =>{
+        let canaper = "canaper";
+        let canaperi = `${canaper}${i}`;
+        i=i+1;
         const canape = {
             couleur : colors.value,
-            titre   : idrecup.name,
-            id : `${id}`,         
+            titre   : idrecup.name,       
             prix : idrecup.price,
+            quantité : quantity.value,
+            id : idrecup._id
         }
-        console.log(canape);
-        localStorage.setItem("item",JSON.stringify(canape));
+        localStorage.setItem(`${canaperi}`,JSON.stringify(canape));
+       
     }
     }
     )
