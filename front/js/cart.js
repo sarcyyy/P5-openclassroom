@@ -59,7 +59,11 @@ if(localStorage.length>0){
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
         additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitecanap}`,`${local.id}`);
         i= i+1;
+        // const element = document.getElementsByClassName("deleteItem");
+        // const datatest = element.dataset.id;
+        // console.log(datatest);
     }
+   
     // Affiche le prix et la quantité finale
     addprixtotal(`${prixtotal}`);
     addquantitetotal(`${quantitetotal}`);
