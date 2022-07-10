@@ -27,11 +27,15 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
                           <div class="cart__item__content__settings__quantity">
                             <p>quantité : ${quantite}</p>
                           </div>
+                          <div class="cart__item__content__settings__delete">
+                      <p class="deleteItem">Supprimer</p>
+                    </div>
                         </div>
             </div>`;
 
     document.getElementById("cart__items").appendChild(additem);
 } 
+
 // calcule le prix total
 function addprixtotal(prixfinal){
       const addprixtotal = document.createElement("a");
