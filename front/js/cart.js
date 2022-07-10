@@ -9,16 +9,18 @@ document.location.reload();
 }
 
 //Ajoute le nom couleur et le prix de l'item
-function additem(nom, couleur,prix, image, alt, quantite){
+function additem(nom, couleur,prix, image, alt, quantite,id){
     const additem = document.createElement("article");
     additem.classList = "cart__item";
+    additem.dataset.id= `${id}`;
+    additem.dataset.color= `${couleur}`;
     additem.innerHTML= `<div class="cart__item__img">
                           <img src="${image}" alt="${alt}">
                         </div>
             <div class="cart__item__content">
                         <div class="cart__item__content__description">
                          <h2>${nom}</h2>
-                         <p>${couleur}</p>
+                         <p> ${couleur}</p>
                          <p>${prix}€</p>
                         </div>
                         <div class="cart__item__content__settings">
@@ -51,7 +53,7 @@ if(localStorage.length>0){
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitetotal}`);
+        additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitetotal}`,`${local.id}`);
         i= i+1;
     }
     // Affiche le prix et la quantité finale
