@@ -5,8 +5,6 @@ function additem(nom, couleur,prix){
     additem.innerHTML = ` <h2>${nom}</h2><p>${couleur}</p><p>${prix}€</p>`
     additem.classList = "cart__item";
     document.getElementById("cart__items").appendChild(additem);
-
-
 } 
 
 
