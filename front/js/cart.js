@@ -6,7 +6,11 @@ function additem(nom, couleur,prix){
     additem.classList = "cart__item";
     document.getElementById("cart__items").appendChild(additem);
 } 
-
+function addprixtotal(prixfinal){
+      const addprixtotal = document.createElement("a");
+      addprixtotal.innerText = `${prixfinal}`;
+      document.getElementById("totalPrice").appendChild(addprixtotal);
+}
 
 
 
@@ -20,8 +24,7 @@ if(localStorage.length>0){
         additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`);
         i= i+1;
         console.log(local);
-      
-
     }
+    addprixtotal(`${prixtotal}`);
 console.log(i);
 }
