@@ -64,8 +64,10 @@ fetch(`http://localhost:3000/api/products/${id}`)
             couleur : colors.value,
             titre   : idrecup.name,       
             prix : idrecup.price,
-            quantité : quantity.value,
-            id : idrecup._id
+            quantite : quantity.value,
+            id : idrecup._id,
+            image : idrecup.imageUrl,
+            alt : idrecup.description,
         }
         localStorage.setItem(`${canaperi}`,JSON.stringify(canape));
        
