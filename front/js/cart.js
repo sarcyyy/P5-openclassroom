@@ -8,7 +8,7 @@ document.location.reload();
 
 }
 
-//Ajoute le nom couleur et le prix de l'item
+//Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
     const additem = document.createElement("article");
     additem.classList = "cart__item";
@@ -53,7 +53,7 @@ if(localStorage.length>0){
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitetotal}`,`${local.id}`);
+        additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitecanap}`,`${local.id}`);
         i= i+1;
     }
     // Affiche le prix et la quantité finale
