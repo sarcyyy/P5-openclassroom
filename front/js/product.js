@@ -57,9 +57,10 @@ fetch(`http://localhost:3000/api/products/${id}`)
     array.forEach(element=> itemcouleur(element));
      // Mise en localstorage
     addToCart.onclick= () =>{
-        let canaper = "canaper";
-        let canaperi = `${canaper}${i}`;
+        // let canaper = "canaper";
+        // let canaperi = `${canaper}${i}`;
         i=i+1;
+        // Que id, couleur, qte
         const canape = {
             couleur : colors.value,
             titre   : idrecup.name,       
@@ -69,7 +70,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
             image : idrecup.imageUrl,
             alt : idrecup.description,
         }
-        localStorage.setItem(`${canaperi}`,JSON.stringify(canape));
+        localStorage.setItem(`${id}`,JSON.stringify(canape));
        
     }
     }

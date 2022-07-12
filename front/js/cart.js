@@ -7,7 +7,23 @@ localStorage.clear();
 document.location.reload();
 
 }
+// vérifie si no doublon -- > l'autre page
 
+//  function isSame(id){
+//      var article = document.getElementsByClassName("cart__item"); 
+//     var dataid = article.getAttribute('data-id');
+//   let dataid = document.querySelector('[data-id]');
+  //   if (`${id}`== dataid){
+  //           localStorage.removeItem;
+
+  //  }
+//  }
+  function supprimer(i){
+  var article = document.getElementsByClassName("cart__item"); 
+  console.log(article,i);
+ var element = article[i].getAttribute('data-id');
+   element.remove(); 
+  }
 //Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
     const additem = document.createElement("article");
@@ -35,7 +51,6 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
 
     document.getElementById("cart__items").appendChild(additem);
 } 
-
 // calcule le prix total
 function addprixtotal(prixfinal){
       const addprixtotal = document.createElement("a");
@@ -49,21 +64,34 @@ function addquantitetotal(quantite){
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
 
-// Crée les articles en le récupérant du Localstorage
+// Crée les articles en le récupérant du Localstorage + supprElement
 if(localStorage.length>0){
-    while (i<localStorage.length){
+  // remplacer par boucle for
+    while (i<localStorage.length){ 
         let local = JSON.parse(localStorage.getItem(`canaper${i}`));
         let prixcanap = parseFloat(`${local.prix}`);
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
         additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitecanap}`,`${local.id}`);
+
+        // -----------------VERIFIE DOUBLON ------------------------
+        //  isSame(`${local.id}`);
+        //  console.log(isSame);
+        // --------------------- FIN VERIFIE DOUBLON-----------------------
+        console.log(i);
+        // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
+          var btnsuppr = document.getElementsByClassName("deleteItem");
+        //  btnsuppr[i].onclick=supprimer(local.id);
+        console.log(btnsuppr);
+        btnsuppr[i].addEventListener('click', function handleClick() {
+          console.log(i);
+          // const index = i.toString();
+          supprimer(i);
+        });
         i= i+1;
-        // const element = document.getElementsByClassName("deleteItem");
-        // const datatest = element.dataset.id;
-        // console.log(datatest);
     }
-   
+ console.log(btnsuppr);
     // Affiche le prix et la quantité finale
     addprixtotal(`${prixtotal}`);
     addquantitetotal(`${quantitetotal}`);
