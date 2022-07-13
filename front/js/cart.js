@@ -21,7 +21,7 @@ document.location.reload();
   function supprimer(i){
   var article = document.getElementsByClassName("cart__item"); 
   console.log(article,i);
- var element = article[i].getAttribute('data-id');
+//  var element = article[i].getAttribute("data-id");
    element.remove(); 
   }
 //Ajoute toute les info de l'item
@@ -66,32 +66,38 @@ function addquantitetotal(quantite){
 
 // Crée les articles en le récupérant du Localstorage + supprElement
 if(localStorage.length>0){
-  // remplacer par boucle for
-    while (i<localStorage.length){ 
-        let local = JSON.parse(localStorage.getItem(`canaper${i}`));
+
+   
+    for (let i = 0; i < localStorage.length; i++){ 
+      let local = JSON.parse(localStorage.getItem(`canaper${i}`));
+      let id = `${local.id}`;
+      fetch(`http://localhost:3000/api/products/${id}`)
+.then(reponse => reponse.json())
+.then( idrecup => { 
+  console.log(idrecup);
         let prixcanap = parseFloat(`${local.prix}`);
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        additem(`${local.titre}`,`${local.couleur}`, `${local.prix}`, `${local.image}`, `${local.alt}`,`${quantitecanap}`,`${local.id}`);
+        additem(`${idrecup.name}`,`${local.couleur}`, `${idrecup.price}`, `${idrecup.imageUrl}`, `${idrecup.altTxt}`,`${quantitecanap}`,`${local.id}`);
 
         // -----------------VERIFIE DOUBLON ------------------------
-        //  isSame(`${local.id}`);
+          //isSame(`${local.id}`);
         //  console.log(isSame);
         // --------------------- FIN VERIFIE DOUBLON-----------------------
         console.log(i);
         // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
           var btnsuppr = document.getElementsByClassName("deleteItem");
         //  btnsuppr[i].onclick=supprimer(local.id);
-        console.log(btnsuppr);
+        // console.log(btnsuppr);
         btnsuppr[i].addEventListener('click', function handleClick() {
           console.log(i);
-          // const index = i.toString();
-          supprimer(i);
+           const index = i.toString();
+          supprimer(index);
         });
         i= i+1;
-    }
- console.log(btnsuppr);
+    })}
+//  console.log(btnsuppr);
     // Affiche le prix et la quantité finale
     addprixtotal(`${prixtotal}`);
     addquantitetotal(`${quantitetotal}`);
