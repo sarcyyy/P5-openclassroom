@@ -1,29 +1,16 @@
-let i = 0;
+
 let prixtotal = 0;
 let quantitetotal = 0;
 // Clear le localstorage lorsqu'on clique passer la commande
 order.onclick =() =>{
 localStorage.clear();
-document.location.reload();
+document.location.reload(); }
 
-}
-// vérifie si no doublon -- > l'autre page
 
-//  function isSame(id){
-//      var article = document.getElementsByClassName("cart__item"); 
-//     var dataid = article.getAttribute('data-id');
-//   let dataid = document.querySelector('[data-id]');
-  //   if (`${id}`== dataid){
-  //           localStorage.removeItem;
 
-  //  }
-//  }
-  function supprimer(i){
-  var article = document.getElementsByClassName("cart__item"); 
-  console.log(article,i);
-//  var element = article[i].getAttribute("data-id");
-   element.remove(); 
-  }
+
+
+
 //Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
     const additem = document.createElement("article");
@@ -87,14 +74,14 @@ if(localStorage.length>0){
         // --------------------- FIN VERIFIE DOUBLON-----------------------
         console.log(i);
         // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
-          var btnsuppr = document.getElementsByClassName("deleteItem");
+          // var btnsuppr = document.getElementsByClassName("deleteItem");
         //  btnsuppr[i].onclick=supprimer(local.id);
         // console.log(btnsuppr);
-        btnsuppr[i].addEventListener('click', function handleClick() {
-          console.log(i);
-           const index = i.toString();
-          supprimer(index);
-        });
+        // btnsuppr[i].addEventListener('click', function handleClick() {
+        //   console.log(i);
+        //    const index = i.toString();
+        //   supprimer(index);
+        // });
         i= i+1;
     })}
 //  console.log(btnsuppr);
