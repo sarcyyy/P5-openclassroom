@@ -59,7 +59,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
     addToCart.onclick= () =>{
          
          let canapei = `canaper${i}`;
-         let canapeid = idrecup._id;
      
         const canape = {
             couleur : colors.value,
