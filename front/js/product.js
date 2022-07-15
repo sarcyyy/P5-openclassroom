@@ -71,9 +71,10 @@ fetch(`http://localhost:3000/api/products/${id}`)
             localStorage.setItem(`${canapei}`,JSON.stringify(canape));
         }
         else{
-        for  (let i = 0; i < localStorage.length; i++){
-            item = JSON.parse(localStorage.getItem(`canaper${i}`));
-           if ( canape.id == item.id )   {
+        for  (let x = 0; x < localStorage.length; x++){
+            var item = JSON.parse(localStorage.getItem(`canaper${x}`));
+
+           if  (canape.id == item.id) {
             console.log("pareil");
             break;
            
@@ -81,6 +82,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
            else {
             localStorage.setItem(`${canapei}`,JSON.stringify(canape));
             console.log('pas pareil');
+           
                    }
 
         
