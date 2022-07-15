@@ -65,7 +65,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
         }
        if ( (parseFloat(canape.quantite)) == 0 ){
 
-        alert("pas de quantite");
+        alert("Veuillez mettre une quantité");
        }
        else{
         if ( localStorage.length==0){
