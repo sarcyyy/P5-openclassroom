@@ -63,7 +63,11 @@ fetch(`http://localhost:3000/api/products/${id}`)
             quantite : quantity.value,
             id : idrecup._id,
         }
-       
+       if ( (parseFloat(canape.quantite)) == 0 ){
+
+        alert("pas de quantite");
+       }
+       else{
         if ( localStorage.length==0){
                      localStorage.setItem(`${canapei}`,JSON.stringify(canape));
                      i=i+1;
@@ -107,6 +111,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
                      i=i+1;
             }
             
+        }
             
 
           
