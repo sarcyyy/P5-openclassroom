@@ -33,7 +33,6 @@ function itemcouleur(couleur){
 const queryString_url_id = window.location.search;
 const urlParams = new URLSearchParams(queryString_url_id);
 const id = urlParams.get('id');
-console.log(id);
 let i = 0;
 if ( localStorage.length>0){
     i = localStorage.length;
@@ -47,8 +46,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => {
     // on crée une constante pour le tableau contenant les couleurs
-    const array = idrecup.colors;
-    console.log(idrecup);
+    const array = idrecup.colors;   
     itemprix(idrecup.price);
     itemdescri(idrecup.description);
     itemnom(idrecup.name);
@@ -65,30 +63,65 @@ fetch(`http://localhost:3000/api/products/${id}`)
             quantite : quantity.value,
             id : idrecup._id,
         }
-      
+
         if ( localStorage.length<=0){
+                     localStorage.setItem(`${canapei}`,JSON.stringify(canape));
+                     i=i+1;
+                }
+            else {
+             for ( var x = 0; x < localStorage.length; x++){
+                var istrue= true;
+                    var itemlocalstorage = JSON.parse(localStorage.getItem(`canaper${x}`));
+                    console.log(itemlocalstorage); // tout le local storage
+                    console.log(canape); // canape actuel
+                    if (itemlocalstorage.id == canape.id){
+                        
+                    console.log("les memes");
+                        istrue = true;
+                        
+                        break;
+                    }
+                    else {
+                        console.log("pas les memes");
+                        istrue=false;                        
+                    }
+                    
+                    
 
-            localStorage.setItem(`${canapei}`,JSON.stringify(canape));
-        }
-        else{
-        for  (let x = 0; x < localStorage.length; x++){
-            var item = JSON.parse(localStorage.getItem(`canaper${x}`));
+             }
 
-           if  (canape.id == item.id) {
-            console.log("pareil");
-            break;
+
+            }
+            if ( istrue == false){
+                localStorage.setItem(`${canapei}`,JSON.stringify(canape));
+                     i=i+1;
+            }
+           console.log(istrue);
+          
+    //     if ( localStorage.length<=0){
+
+    //         localStorage.setItem(`${canapei}`,JSON.stringify(canape));
+    //     }
+    //     else{
+    //     for  (let x = 0; x < localStorage.length; x++){
+    //         var item = JSON.parse(localStorage.getItem(`canaper${x}`));
+
+    //        if  (canape.id == item.id) {
+    //         console.log("pareil");
+    //         break;
            
-           }
-           else {
-            localStorage.setItem(`${canapei}`,JSON.stringify(canape));
-            console.log('pas pareil');
+    //        }
+    //        else {
+    //         localStorage.setItem(`${canapei}`,JSON.stringify(canape));
+    //         i=i+1;
+    //         console.log('pas pareil');
            
-                   }
+    //                }
 
         
-        }
+    //     }
 
-    }
+    // }
    
     }
 }
