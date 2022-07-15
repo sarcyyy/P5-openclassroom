@@ -80,7 +80,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
                     if ((itemlocalstorage.id == canape.id) && (itemlocalstorage.couleur == canape.couleur)){
                         nomkey = `canaper${x}`;
                     console.log("les memes");
-                        istrue = true;
                         itemlocalstorage.quantite = parseFloat(itemlocalstorage.quantite)+parseFloat(canape.quantite);
                         console.log("memecouleur");
                      console.log(itemlocalstorage);
@@ -98,8 +97,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
                         console.log("pas les memes");
                         istrue=false;                        
                     }
-                    
-                    
 
              }
             
