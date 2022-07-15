@@ -58,27 +58,40 @@ fetch(`http://localhost:3000/api/products/${id}`)
          
          let canapei = `canaper${i}`;
      
-        const canape = {
+        var canape = {
             couleur : colors.value,
             quantite : quantity.value,
             id : idrecup._id,
         }
-
-        if ( localStorage.length<=0){
+       
+        if ( localStorage.length==0){
                      localStorage.setItem(`${canapei}`,JSON.stringify(canape));
                      i=i+1;
                 }
             else {
              for ( var x = 0; x < localStorage.length; x++){
                 var istrue= true;
+               
                     var itemlocalstorage = JSON.parse(localStorage.getItem(`canaper${x}`));
+                    
                     console.log(itemlocalstorage); // tout le local storage
+                    
                     console.log(canape); // canape actuel
-                    if (itemlocalstorage.id == canape.id){
-                        
+                    if ((itemlocalstorage.id == canape.id) && (itemlocalstorage.couleur == canape.couleur)){
+                        nomkey = `canaper${x}`;
                     console.log("les memes");
                         istrue = true;
-                        
+                        itemlocalstorage.quantite = parseFloat(itemlocalstorage.quantite)+parseFloat(canape.quantite);
+                        console.log("memecouleur");
+                     console.log(itemlocalstorage);
+                         console.log(canape);
+                         console.log(nomkey);
+                         canape = {
+                          couleur : colors.value,
+                          quantite : itemlocalstorage.quantite,
+                          id : idrecup._id,
+                         }
+                         localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
                         break;
                     }
                     else {
@@ -89,14 +102,16 @@ fetch(`http://localhost:3000/api/products/${id}`)
                     
 
              }
-
+            
 
             }
             if ( istrue == false){
                 localStorage.setItem(`${canapei}`,JSON.stringify(canape));
                      i=i+1;
             }
-                       console.log(istrue);
+            
+            
+
           
     //     if ( localStorage.length<=0){
 
@@ -124,7 +139,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
     // }
    
     }
-}
+} 
     )
 
 
