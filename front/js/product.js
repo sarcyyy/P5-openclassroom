@@ -96,7 +96,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
                 localStorage.setItem(`${canapei}`,JSON.stringify(canape));
                      i=i+1;
             }
-           console.log(istrue);
+                       console.log(istrue);
           
     //     if ( localStorage.length<=0){
 
