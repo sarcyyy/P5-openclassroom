@@ -8,6 +8,7 @@ document.location.reload(); }
 
 
 
+// Ajoute la quantité souhaité
 
 
 
@@ -28,7 +29,9 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
                         </div>
                         <div class="cart__item__content__settings">
                           <div class="cart__item__content__settings__quantity">
-                            <p>quantité : ${quantite}</p>
+                          <p>Qté : ${quantite}</p>
+                      <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="">
+              
                           </div>
                           <div class="cart__item__content__settings__delete">
                       <p class="deleteItem">Supprimer</p>
@@ -62,10 +65,13 @@ if(localStorage.length>0){
 .then(reponse => reponse.json())
 .then( idrecup => { 
   console.log(idrecup);
-        let prixcanap = parseFloat(`${local.prix}`);
+        let prixcanap = parseFloat(`${idrecup.price}`);
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
+        console.log(quantitetotal);
+        console.log(prixcanap);
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
+        console.log(prixtotal);
         additem(`${idrecup.name}`,`${local.couleur}`, `${idrecup.price}`, `${idrecup.imageUrl}`, `${idrecup.altTxt}`,`${quantitecanap}`,`${local.id}`);
 
         // -----------------VERIFIE DOUBLON ------------------------
@@ -83,9 +89,13 @@ if(localStorage.length>0){
         //   supprimer(index);
         // });
         i= i+1;
+          
+    addprixtotal(`${prixtotal}`);
+    addquantitetotal(`${quantitetotal}`);
     })}
 //  console.log(btnsuppr);
     // Affiche le prix et la quantité finale
-    addprixtotal(`${prixtotal}`);
-    addquantitetotal(`${quantitetotal}`);
+  
 }
+
+
