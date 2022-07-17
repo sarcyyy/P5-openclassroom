@@ -89,9 +89,10 @@ if(localStorage.length>0){
         //   supprimer(index);
         // });
         i= i+1;
-          
+          if ( i == localStorage.length){
     addprixtotal(`${prixtotal}`);
     addquantitetotal(`${quantitetotal}`);
+  }
     })}
 //  console.log(btnsuppr);
     // Affiche le prix et la quantité finale
