@@ -80,7 +80,6 @@ function addquantitetotal(quantite){
      console.log(getqte[y]);
      getqte[y].addEventListener('keypress',function enter(entrer){
       if (entrer.key === 'Enter'){
-        
         console.log(nomkey);
         console.log(quantitecanap);
         quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
@@ -96,7 +95,7 @@ function addquantitetotal(quantite){
 
 
     })
-  // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
+  // ----------------------------Supprimer un élement -----------------------
 
   var supprbtn = document.getElementsByClassName("deleteItem");
   supprbtn[y].addEventListener('click',function click(){
