@@ -54,17 +54,25 @@ function addquantitetotal(quantite){
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
 
+
 // Crée les articles en le récupérant du Localstorage + supprElement
 if(localStorage.length>0){
 
    
     for (let i = 0; i < localStorage.length; i++){ 
+     
       let local = JSON.parse(localStorage.getItem(`canaper${i}`));
+     console.log(local);
+    //  if (local== null){
+    //   continue boucle;
+    //  }
       let id = `${local.id}`;
+      
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
-  console.log(idrecup);
+ console.log(idrecup);
+ var nomkey = `canaper${i}`;
         let prixcanap = parseFloat(`${idrecup.price}`);
         let quantitecanap = parseFloat(`${local.quantite}`)
         quantitetotal= quantitetotal + quantitecanap;
@@ -73,22 +81,20 @@ if(localStorage.length>0){
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
         console.log(prixtotal);
         additem(`${idrecup.name}`,`${local.couleur}`, `${idrecup.price}`, `${idrecup.imageUrl}`, `${idrecup.altTxt}`,`${quantitecanap}`,`${local.id}`);
-
-        // -----------------VERIFIE DOUBLON ------------------------
-          //isSame(`${local.id}`);
-        //  console.log(isSame);
-        // --------------------- FIN VERIFIE DOUBLON-----------------------
         console.log(i);
         // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
-          // var btnsuppr = document.getElementsByClassName("deleteItem");
-        //  btnsuppr[i].onclick=supprimer(local.id);
-        // console.log(btnsuppr);
-        // btnsuppr[i].addEventListener('click', function handleClick() {
-        //   console.log(i);
-        //    const index = i.toString();
-        //   supprimer(index);
-        // });
-        i= i+1;
+        const y = i;
+        // y ici est égal au nb d'element de classe
+        var supprbtn = document.getElementsByClassName("deleteItem");
+        supprbtn[y].addEventListener('click',function click(){
+          console.log("clicked");
+           var child = document.getElementsByClassName("cart__item");
+           console.log(child[y]);
+           console.log(nomkey); 
+            localStorage.removeItem(nomkey);
+            document.location.reload();
+        });
+          
           if ( i == localStorage.length){
     addprixtotal(`${prixtotal}`);
     addquantitetotal(`${quantitetotal}`);
@@ -98,5 +104,3 @@ if(localStorage.length>0){
     // Affiche le prix et la quantité finale
   
 }
-
-
