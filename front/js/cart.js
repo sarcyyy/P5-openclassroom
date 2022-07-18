@@ -84,6 +84,7 @@ if(localStorage.length>0){
         console.log(i);
         // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
         const y = i;
+        i=i+1;
         // y ici est égal au nb d'element de classe
         var supprbtn = document.getElementsByClassName("deleteItem");
         supprbtn[y].addEventListener('click',function click(){
