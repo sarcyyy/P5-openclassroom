@@ -1,16 +1,10 @@
-
 let prixtotal = 0;
-let quantitetotal = 0;
+let quantitetotal = 0; 
+
 // Clear le localstorage lorsqu'on clique passer la commande
 order.onclick =() =>{
 localStorage.clear();
 document.location.reload(); }
-
-
-
-// Ajoute la quantité souhaité
-
-
 
 //Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
@@ -56,77 +50,64 @@ function addquantitetotal(quantite){
 }
 
 
-// Crée les articles en le récupérant du Localstorage + supprElement
-if(localStorage.length>0){
+// Crée les articles en le récupérant du Localstorage 
 
-   
-    for (let i = 0; i < localStorage.length; i++){ 
-     
-      let local = JSON.parse(localStorage.getItem(`canaper${i}`));
+    for (var i = 0; i < localStorage.length; i++){ 
+      console.log(i);
+      const y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
+      let local = JSON.parse(localStorage.getItem(`canaper${y}`));
     //  console.log(local);
     //  if (local== null){
     //   continue boucle;
     //  }
       let id = `${local.id}`;
-      
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
-//  console.log(idrecup);
- var nomkey = `canaper${i}`;
-        let prixcanap = parseFloat(`${idrecup.price}`);
-        let quantitecanap = parseFloat(`${local.quantite}`)
-        quantitetotal= quantitetotal + quantitecanap;
-        // console.log(quantitetotal);
-        // console.log(prixcanap);
+        var nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
+        let prixcanap = parseFloat(`${idrecup.price}`); // récupere en float le prix
+        let quantitecanap = parseFloat(`${local.quantite}`)// récupere en float le prix
+        quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        // console.log(prixtotal);
         additem(`${idrecup.name}`,`${local.couleur}`, `${idrecup.price}`, `${idrecup.imageUrl}`, `${idrecup.altTxt}`,`${quantitecanap}`,`${local.id}`);
-        // console.log(i);
-        // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
-        const y = i; // y ici est égal au nb d'element de classe
-        var supprbtn = document.getElementsByClassName("deleteItem");
-        supprbtn[y].addEventListener('click',function click(){
-          // console.log("clicked");
-           document.getElementsByClassName("cart__item");
-          //  console.log(child[y]);
-          //  console.log(nomkey); 
-            localStorage.removeItem(nomkey);
-            document.location.reload();
-        }); 
-        //------------------------------ Ajouter quantité --------------------
-      var getqte = document.getElementsByClassName("itemQuantity");
-      getqte[y].addEventListener('keypress',function enter(entrer){
-        if (entrer.key === 'Enter'){
-          
-          console.log(nomkey);
-          console.log(quantitecanap);
-          quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
-          console.log(quantitecanap);
-          canape = {
-            couleur : local.couleur,
-            quantite : quantitecanap,
-            id : local.id,
-           }
-           localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
-           document.location.reload();
-        }
 
+        if ( (y+1) == localStorage.length){ // Calcule prix total une fois que la boucle est finis
+            addprixtotal(`${prixtotal}`);
+            addquantitetotal(`${quantitetotal}`);}
 
-      })
+     //------------------------------ Ajouter quantité --------------------
+     var getqte = document.getElementsByClassName("itemQuantity");
+     console.log(getqte[y]);
+     getqte[y].addEventListener('keypress',function enter(entrer){
+      if (entrer.key === 'Enter'){
         
+        console.log(nomkey);
+        console.log(quantitecanap);
+        quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
+        console.log(quantitecanap);
+        canape = {
+          couleur : local.couleur,
+          quantite : quantitecanap,
+          id : local.id,
+         }
+         localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
+         document.location.reload();
+      }
 
 
+    })
+  // ----------------------------Supprimer un élement ?? à faire :addeventlistener-----------------------
 
-
-
-        i=i+1;      
-          if ( i == localStorage.length){
-    addprixtotal(`${prixtotal}`);
-    addquantitetotal(`${quantitetotal}`);
-  }
+  var supprbtn = document.getElementsByClassName("deleteItem");
+  supprbtn[y].addEventListener('click',function click(){
+    // console.log("clicked");
+     document.getElementsByClassName("cart__item");
+    //  console.log(child[y]);
+    //  console.log(nomkey); 
+      localStorage.removeItem(nomkey);
+      document.location.reload();
+  }); 
     })}
-//  console.log(btnsuppr);
-    // Affiche le prix et la quantité finale
+
   
-}
+
