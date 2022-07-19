@@ -112,33 +112,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
             }
             
         }
-            
-
-          
-    //     if ( localStorage.length<=0){
-
-    //         localStorage.setItem(`${canapei}`,JSON.stringify(canape));
-    //     }
-    //     else{
-    //     for  (let x = 0; x < localStorage.length; x++){
-    //         var item = JSON.parse(localStorage.getItem(`canaper${x}`));
-
-    //        if  (canape.id == item.id) {
-    //         console.log("pareil");
-    //         break;
-           
-    //        }
-    //        else {
-    //         localStorage.setItem(`${canapei}`,JSON.stringify(canape));
-    //         i=i+1;
-    //         console.log('pas pareil');
-           
-    //                }
-
-        
-    //     }
-
-    // }
+             
    
     }
 } 

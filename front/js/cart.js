@@ -109,19 +109,48 @@ function addquantitetotal(quantite){
 
 var commander = document.getElementsByClassName("cart__order__form")[0];
 commander.addEventListener("submit",function(e){
-   e.preventDefault();
 var erreur;
 var classinput = document.getElementsByClassName("cart__order__form")[0];
 var inputs = classinput.getElementsByTagName("input");
-console.log(inputs);
-for (var i = 0; i< inputs.length; i++){
+
+for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
 if ( (!inputs[i].value)){
   erreur = " veuillez renseigner un champ";
   alert("erreur");
 }
+for (  let p= 0; p<localStorage.length; p++){ // Ajouter chaque element en strings
+  console.log(localStorage.length);
+  let nomcanap = `canaper${p}`;
+  console.log("nomcanap");
+  console.log(nomcanap);
+nomcanap = 
+{
+  productID : nomcanap.id,
 
 }
 
+}
+
+}
+var formulaire = {
+  firstName : inputs[0].value,
+  lastName : inputs[1].value,
+  address : inputs[2].value,
+  city : inputs[3].value,
+  email : inputs[4].value,
+}
+console.log(formulaire);
+e.preventDefault();
+const envoiform = fetch("http://localhost:3000/api/order",{
+  method: "POST",
+  body: JSON.stringify(formulaire),
+
+})
+{
+ 
+}
+console.log(envoiform);
+ 
 })
 
 
