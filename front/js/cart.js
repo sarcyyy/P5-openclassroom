@@ -1,10 +1,10 @@
 let prixtotal = 0;
 let quantitetotal = 0; 
 
-// Clear le localstorage lorsqu'on clique passer la commande
-order.onclick =() =>{
-localStorage.clear();
-document.location.reload(); }
+// // Clear le localstorage lorsqu'on clique passer la commande
+// order.onclick =() =>{
+// localStorage.clear();
+// document.location.reload(); }
 
 //Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
@@ -91,8 +91,6 @@ function addquantitetotal(quantite){
          localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
          document.location.reload();
       }
-
-
     })
   // ----------------------------Supprimer un élement -----------------------
   let supprbtn = document.getElementsByClassName("deleteItem");
@@ -107,4 +105,23 @@ function addquantitetotal(quantite){
     })}
 
   
+// ---------------FORMULAIRE ----------------------
+
+var commander = document.getElementsByClassName("cart__order__form")[0];
+commander.addEventListener("submit",function(e){
+   e.preventDefault();
+var erreur;
+var classinput = document.getElementsByClassName("cart__order__form")[0];
+var inputs = classinput.getElementsByTagName("input");
+console.log(inputs);
+for (var i = 0; i< inputs.length; i++){
+if ( (!inputs[i].value)){
+  erreur = " veuillez renseigner un champ";
+  alert("erreur");
+}
+
+}
+
+})
+
 
