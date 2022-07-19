@@ -94,10 +94,12 @@ fetch(`http://localhost:3000/api/products/${id}`)
                           quantite : itemlocalstorage.quantite,
                           id : idrecup._id,
                          }
+                         // Utiliser .push
                          localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
                         break;
                     }
-                    else {
+                    // tableau.filter(condition)
+                                        else {
                         console.log("pas les memes");
                         istrue=false;                        
                     }

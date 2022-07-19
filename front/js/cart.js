@@ -48,27 +48,21 @@ function addquantitetotal(quantite){
     addquantitetotal.innerText = `${quantite}`;
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
-
-
 // Crée les articles en le récupérant du Localstorage 
 
     for(let i = 0; i < localStorage.length; i++){ 
       let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let local = JSON.parse(localStorage.getItem(`canaper${y}`));
-    //  console.log(local);
-    //  if (local== null){
-    //   continue boucle;
-    //  }
-      let id = `${local.id}`;
+      let id = local.id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
        let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
-        let prixcanap = parseFloat(`${idrecup.price}`); // récupere en float le prix
-        let quantitecanap = parseFloat(`${local.quantite}`)// récupere en float le prix
+        let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
+        let quantitecanap = parseFloat(local.quantite)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        additem(`${idrecup.name}`,`${local.couleur}`, `${idrecup.price}`, `${idrecup.imageUrl}`, `${idrecup.altTxt}`,`${quantitecanap}`,`${local.id}`);
+        additem(idrecup.name,local.couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,quantitecanap,local.id);
 
         if ( (y+1) == localStorage.length){ // Calcule prix total une fois que la boucle est finis
             addprixtotal(`${prixtotal}`);
@@ -109,6 +103,8 @@ function addquantitetotal(quantite){
 
 var commander = document.getElementsByClassName("cart__order__form")[0];
 commander.addEventListener("submit",function(e){
+  e.preventDefault();
+  console.log(e.target);
 var erreur;
 var classinput = document.getElementsByClassName("cart__order__form")[0];
 var inputs = classinput.getElementsByTagName("input");
@@ -133,15 +129,20 @@ nomcanap =
 
 }
 var formulaire = {
+   contact : {  
+
   firstName : inputs[0].value,
   lastName : inputs[1].value,
   address : inputs[2].value,
   city : inputs[3].value,
   email : inputs[4].value,
+  },
+
+  products : [productsid],
+  
 }
 console.log(formulaire);
-e.preventDefault();
-const envoiform = fetch("http://localhost:3000/api/order",{
+const envoiform = fetch("http://localhost:3000/products/ordsser",{
   method: "POST",
   body: JSON.stringify(formulaire),
 
