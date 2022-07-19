@@ -52,9 +52,8 @@ function addquantitetotal(quantite){
 
 // Crée les articles en le récupérant du Localstorage 
 
-    for (var i = 0; i < localStorage.length; i++){ 
-      console.log(i);
-      const y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
+    for(let i = 0; i < localStorage.length; i++){ 
+      let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let local = JSON.parse(localStorage.getItem(`canaper${y}`));
     //  console.log(local);
     //  if (local== null){
@@ -64,7 +63,7 @@ function addquantitetotal(quantite){
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
-        var nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
+       let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
         let prixcanap = parseFloat(`${idrecup.price}`); // récupere en float le prix
         let quantitecanap = parseFloat(`${local.quantite}`)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
@@ -76,7 +75,7 @@ function addquantitetotal(quantite){
             addquantitetotal(`${quantitetotal}`);}
 
      //------------------------------ Ajouter quantité --------------------
-     var getqte = document.getElementsByClassName("itemQuantity");
+     let getqte = document.getElementsByClassName("itemQuantity");
      console.log(getqte[y]);
      getqte[y].addEventListener('keypress',function enter(entrer){
       if (entrer.key === 'Enter'){
@@ -96,8 +95,7 @@ function addquantitetotal(quantite){
 
     })
   // ----------------------------Supprimer un élement -----------------------
-
-  var supprbtn = document.getElementsByClassName("deleteItem");
+  let supprbtn = document.getElementsByClassName("deleteItem");
   supprbtn[y].addEventListener('click',function click(){
     // console.log("clicked");
      document.getElementsByClassName("cart__item");
