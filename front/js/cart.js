@@ -116,7 +116,7 @@ var inputs = classinput.getElementsByTagName("input");
 for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
 if ( (!inputs[i].value)){
   erreur = " veuillez renseigner un champ";
-  alert("erreur");
+  alert(erreur);
 }
 for (  let p= 0; p<localStorage.length; p++){ // Ajouter chaque element en strings
   console.log(localStorage.length);
