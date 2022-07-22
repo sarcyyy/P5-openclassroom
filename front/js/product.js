@@ -98,17 +98,16 @@ fetch(`http://localhost:3000/api/products/${id}`)
        }
 
       
-    //   else {
-    //     var keycanape = JSON.parse(localStorage.getItem("canape"))
-    //     console.log(keycanape[x]);
-    //     tabcanap[x].quantite = parseFloat(tabcanap[x].quantite)+parseFloat(canapevalue.quantite);
-    //       console.log(keycanape[x].quantite);
-    //       newcanap = {
-    //         couleur : colors.value,
-    //       quantite : tabcanap[x].quantite,
-    //                   id : idrecup._id,
-                      
-    // }
+      else {
+       keycanape = JSON.parse(tableaucanape);
+    //    console.log(keycanape[2].couleur);
+       canapeamodifier = keycanape[x];
+       console.log(canapeamodifier);
+       canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(canapevalue.quantite);
+       console.log(canapeamodifier);
+       localStorage.setItem('canape',JSON.stringify(keycanape));
+
+     }
     // console.log(tabcanap[x]);
     //       keycanape.push(tabcanap[x]);
       
