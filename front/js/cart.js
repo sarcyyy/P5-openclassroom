@@ -62,6 +62,7 @@ let local = JSON.parse(localStorage.getItem(`canape`));
         let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
+        console.log(prixtotal);
         additem(idrecup.name,local[i].couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,local[i].quantite,local[i].id);
  console.log(i);
         if ( (i+1) == local.length){ // Calcule prix total une fois que la boucle est finis
@@ -86,15 +87,17 @@ let local = JSON.parse(localStorage.getItem(`canape`));
   //        document.location.reload();
   //     }
   //   })
-  // // ----------------------------Supprimer un élement -----------------------
-  // let supprbtn = document.getElementsByClassName("deleteItem");
-  // supprbtn[y].addEventListener('click',function click(){
-  //   // console.log("clicked");
-  //    document.getElementsByClassName("cart__item");
-  //   //  console.log(child[y]);
-  //   //  console.log(nomkey); 
-  //     localStorage.removeItem(nomkey);
-  //     document.location.reload();
+  // ----------------------------Supprimer un élement -----------------------
+  //  let supprbtn = document.getElementsByClassName("deleteItem");
+  //  supprbtn[i].addEventListener('click',function click(){
+  //     console.log("clicked");
+  //     document.getElementsByClassName("cart__item");
+  // //   //  console.log(child[y]);
+  // //   //  console.log(nomkey); 
+  // console.log(local[i])
+  
+  //      localStorage.removeItem(local[i]);
+  //      document.location.reload();
   // }); 
     })}
 

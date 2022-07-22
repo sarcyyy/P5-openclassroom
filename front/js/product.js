@@ -63,11 +63,11 @@ fetch(`http://localhost:3000/api/products/${id}`)
       quantite : quantity.value,
                   id : idrecup._id,
 }
-// if ( (parseFloat(canapevalue.quantite)) == 0 ){
-//     alert("Veuillez mettre une quantité");
+ if ( (parseFloat(canapevalue.quantite)) == 0 ){
+    alert("Veuillez mettre une quantité");
  
-//     }
-//     else{
+    }
+    else{
     if (tableaucanape == null) {
         keycanape =[canapevalue];
        localStorage.setItem('canape',JSON.stringify(keycanape));
@@ -91,9 +91,11 @@ fetch(`http://localhost:3000/api/products/${id}`)
                                     }
        }
        console.log(istrue);
-      keycanape = JSON.parse(tableaucanape);
+       if ( istrue == false){
+              keycanape = JSON.parse(tableaucanape);
        keycanape.push(canapevalue);
         localStorage.setItem('canape',JSON.stringify(keycanape));
+       }
 
       
     //   else {
@@ -172,4 +174,4 @@ fetch(`http://localhost:3000/api/products/${id}`)
 //         } 
         
  
-})
+}})
