@@ -49,53 +49,53 @@ function addquantitetotal(quantite){
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
 // Crée les articles en le récupérant du Localstorage 
-
-    for(let i = 0; i < localStorage.length; i++){ 
+let local = JSON.parse(localStorage.getItem(`canape`));
+    for(let i = 0; i < local.length; i++){ 
       let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
-      let local = JSON.parse(localStorage.getItem(`canaper${y}`));
-      let id = local.id;
+      let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
-       let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
+  console.log(local.length);
+      //  let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
         let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
-        let quantitecanap = parseFloat(local.quantite)// récupere en float le prix
+        let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
-        additem(idrecup.name,local.couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,quantitecanap,local.id);
-
-        if ( (y+1) == localStorage.length){ // Calcule prix total une fois que la boucle est finis
+        additem(idrecup.name,local[i].couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,local[i].quantite,local[i].id);
+ console.log(i);
+        if ( (i+1) == local.length){ // Calcule prix total une fois que la boucle est finis
             addprixtotal(`${prixtotal}`);
             addquantitetotal(`${quantitetotal}`);}
 
-     //------------------------------ Ajouter quantité --------------------
-     let getqte = document.getElementsByClassName("itemQuantity");
-     console.log(getqte[y]);
-     getqte[y].addEventListener('keypress',function enter(entrer){
-      if (entrer.key === 'Enter'){
-        console.log(nomkey);
-        console.log(quantitecanap);
-        quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
-        console.log(quantitecanap);
-        canape = {
-          couleur : local.couleur,
-          quantite : quantitecanap,
-          id : local.id,
-         }
-         localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
-         document.location.reload();
-      }
-    })
-  // ----------------------------Supprimer un élement -----------------------
-  let supprbtn = document.getElementsByClassName("deleteItem");
-  supprbtn[y].addEventListener('click',function click(){
-    // console.log("clicked");
-     document.getElementsByClassName("cart__item");
-    //  console.log(child[y]);
-    //  console.log(nomkey); 
-      localStorage.removeItem(nomkey);
-      document.location.reload();
-  }); 
+  //    //------------------------------ Ajouter quantité --------------------
+  //    let getqte = document.getElementsByClassName("itemQuantity");
+  //    console.log(getqte[y]);
+  //    getqte[y].addEventListener('keypress',function enter(entrer){
+  //     if (entrer.key === 'Enter'){
+  //       console.log(nomkey);
+  //       console.log(quantitecanap);
+  //       quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
+  //       console.log(quantitecanap);
+  //       canape = {
+  //         couleur : local.couleur,
+  //         quantite : quantitecanap,
+  //         id : local.id,
+  //        }
+  //        localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
+  //        document.location.reload();
+  //     }
+  //   })
+  // // ----------------------------Supprimer un élement -----------------------
+  // let supprbtn = document.getElementsByClassName("deleteItem");
+  // supprbtn[y].addEventListener('click',function click(){
+  //   // console.log("clicked");
+  //    document.getElementsByClassName("cart__item");
+  //   //  console.log(child[y]);
+  //   //  console.log(nomkey); 
+  //     localStorage.removeItem(nomkey);
+  //     document.location.reload();
+  // }); 
     })}
 
   
@@ -153,5 +153,4 @@ const envoiform = fetch("http://localhost:3000/products/ordsser",{
 console.log(envoiform);
  
 })
-
 
