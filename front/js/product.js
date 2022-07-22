@@ -74,7 +74,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
      }
       else {
 
-        // for ( var x=0; x < tableaucanape.length; x++){
           var tabcanap = JSON.parse(localStorage.getItem("canape"));
           for ( var x=0; x< tabcanap.length; x++){
             var istrue=true;
@@ -100,7 +99,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
       
       else {
        keycanape = JSON.parse(tableaucanape);
-    //    console.log(keycanape[2].couleur);
        canapeamodifier = keycanape[x];
        console.log(canapeamodifier);
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(canapevalue.quantite);
@@ -108,69 +106,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
        localStorage.setItem('canape',JSON.stringify(keycanape));
 
      }
-    // console.log(tabcanap[x]);
-    //       keycanape.push(tabcanap[x]);
-      
 
-    // // keycanape = JSON.parse(tableaucanape)
-  
-    // //       keycanape.push(canapevalue);
-    //     localStorage.setItem('canape',JSON.stringify(keycanape));
-    //     }
-
-    
-     
     }   
 }
-
-           
-//            for ( var x = 0; x < localStorage.length; x++){
-//         //- récupérer une valeur I dans le tableau
-//         var itemlocalstorage = JSON.parse(localStorage.getItem("canape"));
-//         var testcanapspecvalue = itemlocalstorage;
-//         console.log(testcanapspecvalue)
-//                  var istrue= true;
-               
-//     //                 var itemlocalstorage = JSON.parse(localStorage.getItem(`canaper${x}`));
-                    
-//     //                 console.log(itemlocalstorage); // tout le local storage
-                    
-//     //                 console.log(canape); // canape actuel
-//      if ((testcanapspecvalue[x].id == canapevalue.id) && (testcanapspecvalue[x].couleur == canapevalue.couleur)){
-//     //                 //     nomkey = `canaper${x}`;
-//    console.log("les memes");
-     
-//    testcanapspecvalue[x].quantite = parseFloat(testcanapspecvalue[x].quantite)+parseFloat(canapevalue.quantite);
-//     //                 //     console.log("memecouleur");
-
-//     //                 //      console.log(canape);
-//     //                 //      console.log(nomkey);
-//          canapevalue = {
-//           couleur : colors.value,
-//            quantite : testcanapspecvalue[x].quantite,
-//           id : idrecup._id,    
-//         }
-//      console.log(canapevalue);
-//     //                 //      // Utiliser .push
-//     //                 //      localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
-//         break;
-//     }
-//     //                 // // tableau.filter(condition)
-//                         else {
-//                          console.log("pas les memes");
-//                      istrue=false;                        
-//                     }
-
-//     //          }
-            
-
-//     //         }
-//     //         if ( istrue == false){
-//     //             localStorage.push(`${canapei}`,JSON.stringify(canape));
-//     //                  i=i+1;
-//     //         }
-            
-//         } 
-        
- 
 }})
