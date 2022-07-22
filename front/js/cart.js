@@ -51,7 +51,7 @@ function addquantitetotal(quantite){
 // Crée les articles en le récupérant du Localstorage 
 let local = JSON.parse(localStorage.getItem(`canape`));
     for(let i = 0; i < local.length; i++){ 
-      let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
+      // let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
@@ -65,9 +65,10 @@ let local = JSON.parse(localStorage.getItem(`canape`));
         console.log(prixtotal);
         additem(idrecup.name,local[i].couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,local[i].quantite,local[i].id);
  console.log(i);
+
         if ( (i+1) == local.length){ // Calcule prix total une fois que la boucle est finis
-            addprixtotal(`${prixtotal}`);
-            addquantitetotal(`${quantitetotal}`);}
+            addprixtotal(prixtotal);
+            addquantitetotal(quantitetotal);}
 
   //    //------------------------------ Ajouter quantité --------------------
   //    let getqte = document.getElementsByClassName("itemQuantity");

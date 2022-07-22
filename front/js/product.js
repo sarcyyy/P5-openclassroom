@@ -63,8 +63,8 @@ fetch(`http://localhost:3000/api/products/${id}`)
       quantite : quantity.value,
                   id : idrecup._id,
 }
- if ( (parseFloat(canapevalue.quantite)) == 0 ){
-    alert("Veuillez mettre une quantité");
+ if ( (parseFloat(canapevalue.quantite)) == 0 || (canapevalue.couleur == '' )){
+    alert("Veuillez mettre une quantité ou une couleur");
  
     }
     else{
