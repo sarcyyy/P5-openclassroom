@@ -1,11 +1,5 @@
 let prixtotal = 0;
 let quantitetotal = 0; 
-
-// // Clear le localstorage lorsqu'on clique passer la commande
-// order.onclick =() =>{
-// localStorage.clear();
-// document.location.reload(); }
-
 //Ajoute toute les info de l'item
 function additem(nom, couleur,prix, image, alt, quantite,id){
     const additem = document.createElement("article");
@@ -59,7 +53,7 @@ let local = JSON.parse(localStorage.getItem(`canape`));
 .then( idrecup => { 
   console.log(local.length);
   var y=i;
-      //  let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
+      
         let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
         let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
@@ -80,10 +74,7 @@ let local = JSON.parse(localStorage.getItem(`canape`));
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
-        console.log(keycanape);
-        console.log(canapeamodifier);
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
-       console.log(canapeamodifier);
        localStorage.setItem('canape',JSON.stringify(keycanape));
        document.location.reload();
          
@@ -105,71 +96,68 @@ let local = JSON.parse(localStorage.getItem(`canape`));
         }
         else{
         canapeasupprimer = keycanape[i];
-        console.log(tableaucanape);
-        console.log(keycanape[y]);
         delete keycanape[y];
         for (var i=0; i<keycanape.length; i++){
           if( keycanape[i] != null ){
            new_array.push(keycanape[i]);
           }
        }
-          console.log(new_array);
          localStorage.setItem('canape',JSON.stringify(new_array));
          document.location.reload();  
 }}); 
     })}
 // ---------------FORMULAIRE ----------------------
 
-var commander = document.getElementsByClassName("cart__order__form")[0];
-commander.addEventListener("submit",function(e){
-  e.preventDefault();
-  console.log(e.target);
-var erreur;
-var classinput = document.getElementsByClassName("cart__order__form")[0];
-var inputs = classinput.getElementsByTagName("input");
+// var commander = document.getElementsByClassName("cart__order__form")[0];
+// commander.addEventListener("submit",function(e){
+//   e.preventDefault();
+//   console.log(e.target);
+// var erreur;
+// var classinput = document.getElementsByClassName("cart__order__form")[0];
+// var inputs = classinput.getElementsByTagName("input");
 
-for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
-if ( (!inputs[i].value)){
-  erreur = " veuillez renseigner un champ";
-  alert(erreur);
-}
-for (  let p= 0; p<localStorage.length; p++){ // Ajouter chaque element en strings
-  console.log(localStorage.length);
-  let nomcanap = `canaper${p}`;
-  console.log("nomcanap");
-  console.log(nomcanap);
-nomcanap = 
-{
-  productID : nomcanap.id,
+// for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
+// if ( (!inputs[i].value)){
+//   erreur = " veuillez renseigner un champ";
+//   alert(erreur);
+// }
+// for (  let p= 0; p<localStorage.length; p++){ // Ajouter chaque element en strings
+//   console.log(localStorage.length);
+//   let nomcanap = `canaper${p}`;
+//   console.log("nomcanap");
+//   console.log(nomcanap);
+// nomcanap = 
+// {
+//   productID : nomcanap.id,
 
-}
+// }
 
-}
+// }
 
-}
-var formulaire = {
-   contact : {  
+// }
+// var formulaire = {
+//    contact : {  
 
-  firstName : inputs[0].value,
-  lastName : inputs[1].value,
-  address : inputs[2].value,
-  city : inputs[3].value,
-  email : inputs[4].value,
-  },
+//   firstName : inputs[0].value,
+//   lastName : inputs[1].value,
+//   address : inputs[2].value,
+//   city : inputs[3].value,
+//   email : inputs[4].value,
+//   },
 
-  products : [productsid],
+//   products : [productsid],
   
-}
-console.log(formulaire);
-const envoiform = fetch("http://localhost:3000/products/ordsser",{
-  method: "POST",
-  body: JSON.stringify(formulaire),
+// }
+// console.log(formulaire);
+// const envoiform = fetch("http://localhost:3000/products/ordsser",{
+//   method: "POST",
+//   body: JSON.stringify(formulaire),
 
-})
-{
+// })
+// {
  
-}
-console.log(envoiform);
+// }
+// console.log(envoiform);
  
-})
+// })
 
