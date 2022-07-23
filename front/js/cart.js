@@ -48,6 +48,7 @@ function addquantitetotal(quantite){
     addquantitetotal.innerText = `${quantite}`;
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
+
 // Crée les articles en le récupérant du Localstorage 
 let local = JSON.parse(localStorage.getItem(`canape`));
     for(let i = 0; i < local.length; i++){ 
@@ -57,6 +58,7 @@ let local = JSON.parse(localStorage.getItem(`canape`));
 .then(reponse => reponse.json())
 .then( idrecup => { 
   console.log(local.length);
+  var y=i;
       //  let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
         let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
         let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
@@ -70,39 +72,52 @@ let local = JSON.parse(localStorage.getItem(`canape`));
             addprixtotal(prixtotal);
             addquantitetotal(quantitetotal);}
 
-  //    //------------------------------ Ajouter quantité --------------------
-  //    let getqte = document.getElementsByClassName("itemQuantity");
-  //    console.log(getqte[y]);
-  //    getqte[y].addEventListener('keypress',function enter(entrer){
-  //     if (entrer.key === 'Enter'){
-  //       console.log(nomkey);
-  //       console.log(quantitecanap);
-  //       quantitecanap= parseFloat(quantitecanap) + parseFloat(getqte[y].value);   
-  //       console.log(quantitecanap);
-  //       canape = {
-  //         couleur : local.couleur,
-  //         quantite : quantitecanap,
-  //         id : local.id,
-  //        }
-  //        localStorage.setItem(`${nomkey}`,JSON.stringify(canape));
-  //        document.location.reload();
-  //     }
-  //   })
+    //  ------------------------------ Ajouter quantité --------------------
+     let getqte = document.getElementsByClassName("itemQuantity");
+     console.log(getqte[y]);
+     getqte[y].addEventListener('keypress',function enter(entrer){
+      if (entrer.key === 'Enter'){
+        const tableaucanape = localStorage.getItem('canape');
+        keycanape = JSON.parse(tableaucanape);
+        canapeamodifier = keycanape[i];
+        console.log(keycanape);
+        console.log(canapeamodifier);
+       canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
+       console.log(canapeamodifier);
+       localStorage.setItem('canape',JSON.stringify(keycanape));
+       document.location.reload();
+         
+      }
+     
+    })
   // ----------------------------Supprimer un élement -----------------------
-  //  let supprbtn = document.getElementsByClassName("deleteItem");
-  //  supprbtn[i].addEventListener('click',function click(){
-  //     console.log("clicked");
-  //     document.getElementsByClassName("cart__item");
-  // //   //  console.log(child[y]);
-  // //   //  console.log(nomkey); 
-  // console.log(local[i])
-  
-  //      localStorage.removeItem(local[i]);
-  //      document.location.reload();
-  // }); 
-    })}
+   let supprbtn = document.getElementsByClassName("deleteItem");
+   supprbtn[y].addEventListener('click',function click(){
+    var new_array = [];
+      console.log("clicked");
+      document.getElementsByClassName("cart__item");
+      const tableaucanape = localStorage.getItem('canape');
+        keycanape = JSON.parse(tableaucanape);
+        if( keycanape.length == 1){
 
-  
+          localStorage.clear();
+          document.location.reload(); 
+        }
+        else{
+        canapeasupprimer = keycanape[i];
+        console.log(tableaucanape);
+        console.log(keycanape[y]);
+        delete keycanape[y];
+        for (var i=0; i<keycanape.length; i++){
+          if( keycanape[i] != null ){
+           new_array.push(keycanape[i]);
+          }
+       }
+          console.log(new_array);
+         localStorage.setItem('canape',JSON.stringify(new_array));
+         document.location.reload();  
+}}); 
+    })}
 // ---------------FORMULAIRE ----------------------
 
 var commander = document.getElementsByClassName("cart__order__form")[0];
