@@ -128,10 +128,10 @@ if ( (!inputs[i].value)){
 
  for (var z=0; z<newkeycanape.length; z++){
   
-  arrayid.push(newkeycanape[z].id);
+  arrayid.push( newkeycanape[z].id);
  
  }
-console.log(arrayid);
+
 var formulaire = {
    contact : {  
 
@@ -142,11 +142,12 @@ var formulaire = {
   email : inputs[4].value,
   },
 
-  products : arrayid,
+  "product-ID" : arrayid.toString(),
+  // "product-ID" : arrayid,
   
 }
 console.log(formulaire);
-const envoiform = fetch("http://localhost:3000/products/order",{
+const envoiform = fetch("http://localhost:3000/api/products/order",{
   method: "POST",
   body: JSON.stringify(formulaire),
 
