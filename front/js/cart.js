@@ -68,6 +68,10 @@ let local = JSON.parse(localStorage.getItem(`canape`));
 
     //  ------------------------------ Ajouter quantité --------------------
      let getqte = document.getElementsByClassName("itemQuantity");
+     if (getqte[y] == null)
+     { document.location.reload();
+
+     }
      console.log(getqte[y]);
      getqte[y].addEventListener('keypress',function enter(entrer){
       if (entrer.key === 'Enter'){
@@ -83,6 +87,10 @@ let local = JSON.parse(localStorage.getItem(`canape`));
     })
   // ----------------------------Supprimer un élement -----------------------
    let supprbtn = document.getElementsByClassName("deleteItem");
+   if (supprbtn[y] == null)
+     { document.location.reload();
+
+     }
    supprbtn[y].addEventListener('click',function click(){
     var new_array = [];
       console.log("clicked");
