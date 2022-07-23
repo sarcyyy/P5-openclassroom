@@ -108,56 +108,53 @@ let local = JSON.parse(localStorage.getItem(`canape`));
     })}
 // ---------------FORMULAIRE ----------------------
 
-// var commander = document.getElementsByClassName("cart__order__form")[0];
-// commander.addEventListener("submit",function(e){
-//   e.preventDefault();
-//   console.log(e.target);
-// var erreur;
-// var classinput = document.getElementsByClassName("cart__order__form")[0];
-// var inputs = classinput.getElementsByTagName("input");
+var commander = document.getElementsByClassName("cart__order__form")[0];
+commander.addEventListener("submit",function(e){
+  e.preventDefault();
+  console.log(e.target);
+var erreur;
+var classinput = document.getElementsByClassName("cart__order__form")[0];
+var inputs = classinput.getElementsByTagName("input");
+var keycanape = localStorage.getItem("canape");
+var newkeycanape = JSON.parse(keycanape);
+var arrayid=[];
 
-// for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
-// if ( (!inputs[i].value)){
-//   erreur = " veuillez renseigner un champ";
-//   alert(erreur);
-// }
-// for (  let p= 0; p<localStorage.length; p++){ // Ajouter chaque element en strings
-//   console.log(localStorage.length);
-//   let nomcanap = `canaper${p}`;
-//   console.log("nomcanap");
-//   console.log(nomcanap);
-// nomcanap = 
-// {
-//   productID : nomcanap.id,
+for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
+if ( (!inputs[i].value)){
+  erreur = " veuillez renseigner un champ";
+  alert(erreur);
+}
+}
 
-// }
-
-// }
-
-// }
-// var formulaire = {
-//    contact : {  
-
-//   firstName : inputs[0].value,
-//   lastName : inputs[1].value,
-//   address : inputs[2].value,
-//   city : inputs[3].value,
-//   email : inputs[4].value,
-//   },
-
-//   products : [productsid],
+ for (var z=0; z<newkeycanape.length; z++){
   
-// }
-// console.log(formulaire);
-// const envoiform = fetch("http://localhost:3000/products/ordsser",{
-//   method: "POST",
-//   body: JSON.stringify(formulaire),
+  arrayid.push(newkeycanape[z].id);
+ 
+ }
+console.log(arrayid);
+var formulaire = {
+   contact : {  
 
-// })
-// {
+  firstName : inputs[0].value,
+  lastName : inputs[1].value,
+  address : inputs[2].value,
+  city : inputs[3].value,
+  email : inputs[4].value,
+  },
+
+  products : arrayid,
+  
+}
+console.log(formulaire);
+const envoiform = fetch("http://localhost:3000/products/order",{
+  method: "POST",
+  body: JSON.stringify(formulaire),
+
+})
+{
  
-// }
-// console.log(envoiform);
+}
+console.log(envoiform);
  
-// })
+})
 
