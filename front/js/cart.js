@@ -52,12 +52,14 @@ function addquantitetotal(quantite){
 // Crée les articles en le récupérant du Localstorage 
 let local = JSON.parse(localStorage.getItem(`canape`));
     for(let i = 0; i < local.length; i++){ 
+      // let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => { 
   console.log(local.length);
   var y=i;
+      //  let nomkey = `canaper${y}`; // récupere le nom de la key du localstorage
         let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
         let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
         quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
