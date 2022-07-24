@@ -132,8 +132,14 @@ if ( (!inputs[i].value)){
   erreur = " veuillez renseigner un champ";
   alert(erreur);
 }
-}
 
+}
+let regexname = new RegExp('^[a-zA-Z -]{3,}$')
+if ( (regexname.test(inputs[0].value)) == false || ((regexname.test(inputs[1].value)) == false|| ((regexname.test(inputs[2].value)))  == false) || (regexname.test(inputs[3].value)) == false){
+  console.log(inputs[0].value);
+  alert("une alert");
+}
+else{
  for (var z=0; z<newkeycanape.length; z++){
   
   arrayid.push( newkeycanape[z].id);
@@ -165,5 +171,6 @@ const envoiform = fetch("http://localhost:3000/api/products/order",{
 }
 console.log(envoiform);
  
-})
+}})
+
 
