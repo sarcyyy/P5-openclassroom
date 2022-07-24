@@ -29,7 +29,17 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
 
     document.getElementById("cart__items").appendChild(additem);
 } 
+// Retourne pas d'article
+function pasdarticle (){
+  const additem = document.createElement("article");
+  additem.classList = "cart__item";
+  additem.innerHTML= `<div class="cart__item__content">
+                        <div class="cart__item__content__description">
+                         <h1>Aucun article selectionné</h1>                     
+                        </div>`;
+                        document.getElementById("cart__items").appendChild(additem);
 
+}
 // calcule le prix total
 function addprixtotal(prixfinal){
       const addprixtotal = document.createElement("a");
@@ -45,6 +55,10 @@ function addquantitetotal(quantite){
 
 // Crée les articles en le récupérant du Localstorage 
 let local = JSON.parse(localStorage.getItem(`canape`));
+if (local == null ){
+  pasdarticle();
+}
+else {
     for(let i = 0; i < local.length; i++){ 
       // let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let id = local[i].id;
@@ -114,6 +128,7 @@ let local = JSON.parse(localStorage.getItem(`canape`));
          document.location.reload();  
 }}); 
     })}
+}
 // ---------------FORMULAIRE ----------------------
 
 var commander = document.getElementsByClassName("cart__order__form")[0];
@@ -126,7 +141,11 @@ var inputs = classinput.getElementsByTagName("input");
 var keycanape = localStorage.getItem("canape");
 var newkeycanape = JSON.parse(keycanape);
 var arrayid=[];
-
+if ( keycanape == null){
+  e.preventDefault();
+  alert ("Veuillez selectionner au moins un article avant de valider le formulaire");
+}
+else {
 for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
 if ( (!inputs[i].value)){
   erreur = " veuillez renseigner un champ";
@@ -171,6 +190,6 @@ const envoiform = fetch("http://localhost:3000/api/products/order",{
 }
 console.log(envoiform);
  
-}})
+}}})
 
 
