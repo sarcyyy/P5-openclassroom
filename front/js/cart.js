@@ -142,7 +142,6 @@ var keycanape = localStorage.getItem("canape");
 var newkeycanape = JSON.parse(keycanape);
 var arrayid=[];
 if ( keycanape == null){
-  e.preventDefault();
   alert ("Veuillez selectionner au moins un article avant de valider le formulaire");
 }
 else {
@@ -156,7 +155,7 @@ if ( (!inputs[i].value)){
 let regexname = new RegExp('^[a-zA-Z -]{3,}$')
 if ( (regexname.test(inputs[0].value)) == false || ((regexname.test(inputs[1].value)) == false|| ((regexname.test(inputs[2].value)))  == false) || (regexname.test(inputs[3].value)) == false){
   console.log(inputs[0].value);
-  alert("une alert");
+  alert("Veuillez verifier que tout les champs contiennent au moins 3 caractères.");
 }
 else{
  for (var z=0; z<newkeycanape.length; z++){
