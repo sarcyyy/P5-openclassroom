@@ -72,7 +72,7 @@ else {
 .then(reponse => reponse.json())
 .then( idrecup => { 
   console.log(local.length);
-  var y=i;
+  var y=i; // Limite les bug en stockant dans une autre variable
       
         let prixcanap = parseFloat(idrecup.price); 
         let quantitecanap = parseFloat(local[i].quantite)
@@ -173,6 +173,7 @@ if ( (!inputs[i].value)){
 }
 
 }
+// ----------------------------------------------------------------------- Utilisation regex pour le formulaire
 let regexname = new RegExp('^[a-zA-Z -]{3,}$')
 if ( (regexname.test(inputs[0].value)) == false || ((regexname.test(inputs[1].value)) == false|| ((regexname.test(inputs[2].value)))  == false) || (regexname.test(inputs[3].value)) == false){
   console.log(inputs[0].value);
