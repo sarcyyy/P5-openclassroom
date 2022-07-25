@@ -1,3 +1,4 @@
+
 let prixtotal = 0;
 let quantitetotal = 0; 
 //Ajoute toute les info de l'item
@@ -58,7 +59,13 @@ let local = JSON.parse(localStorage.getItem(`canape`));
 if (local == null ){
   pasdarticle();
 }
+else{
+if (local.length ==0){
+  localStorage.clear();
+  document.location.reload();
+}
 else {
+  
     for(let i = 0; i < local.length; i++){ 
       let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
@@ -83,19 +90,33 @@ else {
      let getqte = document.getElementsByClassName("itemQuantity");
      if (getqte[y] == null)
      { document.location.reload();
-
      }
      console.log(getqte[y]);
      getqte[y].addEventListener('keypress',function enter(entrer){
       if (entrer.key === 'Enter'){
+      
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
+       console.log(canapeamodifier.quantite);
+       if ( canapeamodifier.quantite <0 ){
+        var new_array = [];
+          delete keycanape[y];
+          for (var b=0; b<keycanape.length; b++){
+            if( keycanape[b] != null ){ // crée un tableau qui filtre "null" quand on supprime l'élément définitivement
+             new_array.push(keycanape[b]);
+            }
+         }
+           localStorage.setItem('canape',JSON.stringify(new_array));
+           document.location.reload();  
+  
+       }
+       else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
        document.location.reload();
          
-      }
+       }}
      
     })
   // ----------------------------Supprimer un élement -----------------------
@@ -126,7 +147,7 @@ else {
          localStorage.setItem('canape',JSON.stringify(new_array));
          document.location.reload();  
 }}); 
-    })}
+    })}}
 }
 // ---------------FORMULAIRE ----------------------
 
