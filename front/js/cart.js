@@ -98,6 +98,7 @@ else {
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
+        console.log(canapeamodifier);
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
        console.log(canapeamodifier.quantite);
        if ( canapeamodifier.quantite <0 ){
@@ -114,7 +115,7 @@ else {
        }
        else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
-       document.location.reload();
+        document.location.reload();
          
        }}
      
@@ -137,7 +138,6 @@ else {
           document.location.reload(); 
         }
         else{
-        canapeasupprimer = keycanape[i];
         delete keycanape[y];
         for (var i=0; i<keycanape.length; i++){
           if( keycanape[i] != null ){ // crée un tableau qui filtre "null" quand on supprime l'élément définitivement
