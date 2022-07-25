@@ -37,10 +37,6 @@ if ( localStorage.length>0){
     i = localStorage.length;
 }
 
-
-
-
-
 fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => {
@@ -50,9 +46,8 @@ fetch(`http://localhost:3000/api/products/${id}`)
     itemnom(idrecup.name);
     itemimage(idrecup.imageUrl, idrecup.altTxt);
     array.forEach(element=> itemcouleur(element));
-     // Mise en localstorage
-    addToCart.onclick= () =>{
-         
+     // ------------------------------------------------Mise en localstorage
+    addToCart.onclick= () =>{ 
     const tableaucanape = localStorage.getItem('canape');
     var canapevalue = {
         couleur : colors.value,
