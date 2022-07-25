@@ -35,7 +35,7 @@ function pasdarticle (){
   additem.classList = "cart__item";
   additem.innerHTML= `<div class="cart__item__content">
                         <div class="cart__item__content__description">
-                         <h1>Aucun article selectionné</h1>                     
+                         <h1>Aucun article dans le panier</h1>                     
                         </div>`;
                         document.getElementById("cart__items").appendChild(additem);
 
@@ -60,7 +60,6 @@ if (local == null ){
 }
 else {
     for(let i = 0; i < local.length; i++){ 
-      // let y = i; // y ici est égal au nb d'element de classe pour supprimer et ajouter une quantité
       let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
@@ -68,9 +67,9 @@ else {
   console.log(local.length);
   var y=i;
       
-        let prixcanap = parseFloat(idrecup.price); // récupere en float le prix
-        let quantitecanap = parseFloat(local[i].quantite)// récupere en float le prix
-        quantitetotal= quantitetotal + quantitecanap;// ajoute la quantité totale du produit
+        let prixcanap = parseFloat(idrecup.price); 
+        let quantitecanap = parseFloat(local[i].quantite)
+        quantitetotal= quantitetotal + quantitecanap;
         prixtotal = prixtotal + ( prixcanap * quantitecanap);
         console.log(prixtotal);
         additem(idrecup.name,local[i].couleur, idrecup.price, idrecup.imageUrl, idrecup.altTxt,local[i].quantite,local[i].id);
@@ -120,7 +119,7 @@ else {
         canapeasupprimer = keycanape[i];
         delete keycanape[y];
         for (var i=0; i<keycanape.length; i++){
-          if( keycanape[i] != null ){
+          if( keycanape[i] != null ){ // crée un tableau qui filtre "null" quand on supprime l'élément définitivement
            new_array.push(keycanape[i]);
           }
        }
@@ -141,11 +140,12 @@ var inputs = classinput.getElementsByTagName("input");
 var keycanape = localStorage.getItem("canape");
 var newkeycanape = JSON.parse(keycanape);
 var arrayid=[];
+// ------------------------------------------------------- verification d'erreur 
 if ( keycanape == null){
   alert ("Veuillez selectionner au moins un article avant de valider le formulaire");
 }
 else {
-for (let i = 0; i< inputs.length; i++){ // verification d'erreur ??
+for (let i = 0; i< inputs.length; i++){ 
 if ( (!inputs[i].value)){
   erreur = " veuillez renseigner un champ";
   alert(erreur);
@@ -157,6 +157,7 @@ if ( (regexname.test(inputs[0].value)) == false || ((regexname.test(inputs[1].va
   console.log(inputs[0].value);
   alert("Veuillez verifier que tout les champs contiennent au moins 3 caractères.");
 }
+// ------------------------------------------------------- Ajout des valeurs des input formulaire + tableau ID 
 else{
  for (var z=0; z<newkeycanape.length; z++){
   
@@ -178,6 +179,7 @@ var formulaire = {
   // "product-ID" : arrayid,
   
 }
+// ------------------------------------------------------- crée la request product
 console.log(formulaire);
 const envoiform = fetch("http://localhost:3000/api/products/order",{
   method: "POST",

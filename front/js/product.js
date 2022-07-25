@@ -23,7 +23,6 @@ function itemdescri(description){
 }
 function itemcouleur(couleur){   
     const itemcouleur= document.createElement("option");
-    // itemcouleur.innerHTML= `<value=>${couleur}</value>`;
     itemcouleur.value= couleur;
     itemcouleur.text=couleur;
     document.getElementById("colors").appendChild(itemcouleur);
@@ -45,16 +44,13 @@ if ( localStorage.length>0){
 fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
 .then( idrecup => {
-    // on crée une constante pour le tableau contenant les couleurs
     const array = idrecup.colors;   
     itemprix(idrecup.price);
     itemdescri(idrecup.description);
     itemnom(idrecup.name);
     itemimage(idrecup.imageUrl, idrecup.altTxt);
-    // On appel un forEach des élement de ce tableau qui appel la fonction itemcouleur de chaque élément
     array.forEach(element=> itemcouleur(element));
      // Mise en localstorage
-    
     addToCart.onclick= () =>{
          
     const tableaucanape = localStorage.getItem('canape');
@@ -85,9 +81,9 @@ fetch(`http://localhost:3000/api/products/${id}`)
                 break;
             }
             else {
-                                    console.log("pas les memes");
-                                      istrue=false;                        
-                                    }
+                 console.log("pas les memes");
+                 istrue=false;                        
+                 }
        }
        console.log(istrue);
        if ( istrue == false){
@@ -96,7 +92,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
         localStorage.setItem('canape',JSON.stringify(keycanape));
        }
 
-      
       else {
        keycanape = JSON.parse(tableaucanape);
        canapeamodifier = keycanape[x];
