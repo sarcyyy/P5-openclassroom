@@ -30,7 +30,7 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
 
     document.getElementById("cart__items").appendChild(additem);
 } 
-// Retourne pas d'article
+// Retourne pas d'article 
 function pasdarticle (){
   const additem = document.createElement("article");
   additem.classList = "cart__item";
@@ -41,7 +41,7 @@ function pasdarticle (){
                         document.getElementById("cart__items").appendChild(additem);
 
 }
-// calcule le prix total
+// calcule le prix total les variables
 function addprixtotal(prixfinal){
       const addprixtotal = document.createElement("a");
       addprixtotal.innerText = `${prixfinal}`;
@@ -72,7 +72,7 @@ else {
 .then(reponse => reponse.json())
 .then( idrecup => { 
   console.log(local.length);
-  var y=i; // Limite les bug en stockant dans une autre variable
+  var y=i; // Limite les bug en stockant dans une autre variable         // VERIFIER ASYC/.THEN
       
         let prixcanap = parseFloat(idrecup.price); 
         let quantitecanap = parseFloat(local[i].quantite)
@@ -174,7 +174,7 @@ if ( (!inputs[i].value)){
 
 }
 // ----------------------------------------------------------------------- Utilisation regex pour le formulaire
-let regexname = new RegExp('^[a-zA-Z -]{3,}$')
+let regexname = new RegExp('^[a-zA-Z -]{3,}$') // Utiliser trim pour les espace debut/fin de chaine et replace ( si jamais double espace)
 if ( (regexname.test(inputs[0].value)) == false || ((regexname.test(inputs[1].value)) == false|| ((regexname.test(inputs[2].value)))  == false) || (regexname.test(inputs[3].value)) == false){
   console.log(inputs[0].value);
   alert("Veuillez verifier que tout les champs contiennent au moins 3 caractères.");
@@ -197,20 +197,30 @@ var formulaire = {
   email : inputs[4].value,
   },
 
-  "product-ID" : arrayid.toString(),
-  // "product-ID" : arrayid,
+  //products : arrayid.toString(),
+  products : arrayid,
   
 }
 // ------------------------------------------------------- crée la request product
 console.log(formulaire);
 const envoiform = fetch("http://localhost:3000/api/products/order",{
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
   method: "POST",
   body: JSON.stringify(formulaire),
 
 })
-{
- 
-}
+.then (data =>{
+ console.log(data);
+
+
+})
+
+
+
+
 console.log(envoiform);
  
 }}})
