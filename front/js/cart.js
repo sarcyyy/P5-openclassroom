@@ -197,7 +197,6 @@ var formulaire = {
   email : inputs[4].value,
   },
 
-  //products : arrayid.toString(),
   products : arrayid,
   
 }
@@ -212,7 +211,7 @@ const envoiform = fetch("http://localhost:3000/api/products/order",{
   body: JSON.stringify(formulaire),
 
 })
-
+// --------------------- récupère l'orderID et redirige vers la page confirmation.
 .then(data => data.json())
 .then( idrecup => { 
  console.log(idrecup);
