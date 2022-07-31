@@ -61,7 +61,7 @@ if (local == null ){
 }
 else{
 if (local.length ==0){
-  localStorage.clear();
+  localStorage.removeItem("canape");
   document.location.reload();
 }
 else {
@@ -134,7 +134,7 @@ else {
         keycanape = JSON.parse(tableaucanape);
         if( keycanape.length == 1){
 
-          localStorage.clear();
+          localStorage.removeItem("canape");
           document.location.reload(); 
         }
         else{
@@ -212,8 +212,14 @@ const envoiform = fetch("http://localhost:3000/api/products/order",{
   body: JSON.stringify(formulaire),
 
 })
-.then (data =>{
- console.log(data);
+
+.then(data => data.json())
+.then( idrecup => { 
+ console.log(idrecup);
+ var idconfirmation = idrecup.orderId;
+ console.log(idconfirmation);
+ localStorage.removeItem("canape");
+ window.location=`confirmation.html?id=${idconfirmation}`;
 
 
 })
@@ -221,7 +227,7 @@ const envoiform = fetch("http://localhost:3000/api/products/order",{
 
 
 
-console.log(envoiform);
+
  
 }}})
 
