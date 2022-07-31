@@ -101,7 +101,7 @@ else {
         console.log(canapeamodifier);
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
        console.log(canapeamodifier.quantite);
-       if ( canapeamodifier.quantite <0 ){
+       if ( canapeamodifier.quantite <=0 ){
         var new_array = [];
           delete keycanape[y];
           for (var b=0; b<keycanape.length; b++){
