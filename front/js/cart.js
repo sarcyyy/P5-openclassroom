@@ -70,9 +70,9 @@ else {
       let id = local[i].id;
       fetch(`http://localhost:3000/api/products/${id}`)
 .then(reponse => reponse.json())
-.then( idrecup => { 
+.then(  idrecup =>  { 
   console.log(local.length);
-  var y=i; // Limite les bug en stockant dans une autre variable         // VERIFIER ASYC/.THEN
+  var y=i; // Limite les bug en stockant dans une autre variable         // VERIFIER ASYNC/AWAIT .THEN
       
         let prixcanap = parseFloat(idrecup.price); 
         let quantitecanap = parseFloat(local[i].quantite)
@@ -88,8 +88,8 @@ else {
 
     //  ------------------------------ Ajouter quantité --------------------
      let getqte = document.getElementsByClassName("itemQuantity");
-     if (getqte[y] == null)
-     { document.location.reload();
+      if (getqte[y] == null)
+      { document.location.reload();
      }
      console.log(getqte[y]);
      getqte[y].addEventListener('keypress',function enter(entrer){
