@@ -101,8 +101,6 @@ else {
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
-        const valeuravant= canapeamodifier.quantite;
-        console.log(canapeamodifier);
       canapeamodifier.quantite =getqte[i].value;
        if ( canapeamodifier.quantite <=0 ){
         var new_array = [];
