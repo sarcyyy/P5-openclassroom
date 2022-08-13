@@ -115,7 +115,7 @@ else {
        }
        else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
-        document.location.reload();
+      
          
        }
      
