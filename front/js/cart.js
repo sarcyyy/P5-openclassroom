@@ -47,6 +47,9 @@ function addprixtotal(prixfinal){
       addprixtotal.innerText = `${prixfinal}`;
       document.getElementById("totalPrice").appendChild(addprixtotal);
 }
+function addprixtotalup(prixfinal){
+  document.getElementById("totalPrice").textContent=`${prixfinal}`
+}
 // Affiche le nombre total d'article
 function addquantitetotal(quantite){
     const addquantitetotal = document.createElement("a");
@@ -94,16 +97,13 @@ else {
       if (getqte[y] == null)
       { document.location.reload();
      }
-     console.log(getqte[y]);
      getqte[y].onchange=('keypress',function change(){
-    
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
+        const valeuravant= canapeamodifier.quantite;
         console.log(canapeamodifier);
-      //  canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
       canapeamodifier.quantite =getqte[i].value;
-       console.log(canapeamodifier.quantite);
        if ( canapeamodifier.quantite <=0 ){
         var new_array = [];
           delete keycanape[y];
@@ -118,24 +118,13 @@ else {
        }
        else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
-       let quantitetotalup=0;
-       
-       for (var b=0; b<keycanape.length; b++){
-        let quantiteaup = keycanape[b];
-      quantitetotalup= parseFloat(quantitetotalup) + parseFloat(quantiteaup.quantite);
-      console.log(quantitetotalup);
-      if ((b+1)==keycanape.length){
-        console.log(quantitetotalup);
-      addquantitetotalup(quantitetotalup);
-      }
+       document.location.reload();  
+ 
        }
-   
-       
-      
-         
+
        }
      
-    })
+    )
   // ----------------------------Supprimer un élement -----------------------
    let supprbtn = document.getElementsByClassName("deleteItem");
    if (supprbtn[y] == null)
