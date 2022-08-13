@@ -18,8 +18,8 @@ function additem(nom, couleur,prix, image, alt, quantite,id){
                         </div>
                         <div class="cart__item__content__settings">
                           <div class="cart__item__content__settings__quantity">
-                          <p>Qté : ${quantite}</p>
-                      <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="">
+                          <p>Qté : </p>
+                      <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="${quantite}">
               
                           </div>
                           <div class="cart__item__content__settings__delete">
@@ -92,14 +92,14 @@ else {
       { document.location.reload();
      }
      console.log(getqte[y]);
-     getqte[y].addEventListener('keypress',function enter(entrer){
-      if (entrer.key === 'Enter'){
-      
+     getqte[y].onchange=('keypress',function change(){
+    
         const tableaucanape = localStorage.getItem('canape');
         keycanape = JSON.parse(tableaucanape);
         canapeamodifier = keycanape[i];
         console.log(canapeamodifier);
-       canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
+      //  canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(getqte[i].value);
+      canapeamodifier.quantite =getqte[i].value;
        console.log(canapeamodifier.quantite);
        if ( canapeamodifier.quantite <=0 ){
         var new_array = [];
@@ -117,7 +117,7 @@ else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
         document.location.reload();
          
-       }}
+       }
      
     })
   // ----------------------------Supprimer un élement -----------------------
