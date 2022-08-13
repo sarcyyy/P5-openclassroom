@@ -62,6 +62,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
     if (tableaucanape == null) {
         keycanape =[canapevalue];
        localStorage.setItem('canape',JSON.stringify(keycanape));
+       alert("Article commandé!");
      }
       else {
 
@@ -85,6 +86,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
               keycanape = JSON.parse(tableaucanape);
        keycanape.push(canapevalue);
         localStorage.setItem('canape',JSON.stringify(keycanape));
+        alert("Article commandé!")
        }
 
       else {
@@ -94,6 +96,7 @@ fetch(`http://localhost:3000/api/products/${id}`)
        canapeamodifier.quantite = parseFloat(canapeamodifier.quantite)+parseFloat(canapevalue.quantite);
        console.log(canapeamodifier);
        localStorage.setItem('canape',JSON.stringify(keycanape));
+       alert("Article commandé!");
 
      }
 
