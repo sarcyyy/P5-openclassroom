@@ -53,6 +53,9 @@ function addquantitetotal(quantite){
     addquantitetotal.innerText = `${quantite}`;
     document.getElementById("totalQuantity").appendChild(addquantitetotal); 
 }
+function addquantitetotalup(quantite){
+  document.getElementById("totalQuantity").textContent=`${quantite}`
+}
 
 // Crée les articles en le récupérant du Localstorage 
 let local = JSON.parse(localStorage.getItem(`canape`));
@@ -115,6 +118,19 @@ else {
        }
        else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
+       let quantitetotalup=0;
+       
+       for (var b=0; b<keycanape.length; b++){
+        let quantiteaup = keycanape[b];
+      quantitetotalup= parseFloat(quantitetotalup) + parseFloat(quantiteaup.quantite);
+      console.log(quantitetotalup);
+      if ((b+1)==keycanape.length){
+        console.log(quantitetotalup);
+      addquantitetotalup(quantitetotalup);
+      }
+       }
+   
+       
       
          
        }
