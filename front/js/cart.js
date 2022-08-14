@@ -116,7 +116,35 @@ else {
        }
        else {
        localStorage.setItem('canape',JSON.stringify(keycanape));
-       document.location.reload();  
+       let prixaup = document.getElementsByClassName("cart__item__content__description")[y];
+       let prixaup2 = prixaup.getElementsByTagName("p")[1].textContent;
+       let prixaup3 = prixaup2.slice(0, -1);
+       let canapequantapres= keycanape[y].quantite;
+   
+       let quantitemodif = 0;
+       prixfinal = 0;
+       console.log("prixtotal");
+       console.log(prixtotal);
+       console.log(prixaup3);
+       for( var b=0; b<keycanape.length;b++){   
+        console.log("canapquant+prix");
+        console.log(quantitecanap);
+        console.log(canapequantapres);
+         console.log(prixaup3);    
+              quantitemodif = parseFloat(quantitemodif)+parseFloat(keycanape[b].quantite);
+              console.log("quantite");
+              console.log(keycanape[b].quantite);
+             if ((parseFloat(canapequantapres)-parseFloat(quantitecanap))>parseFloat(quantitecanap)){
+              prixfinal= parseFloat(prixtotal)+parseFloat(prixaup3);
+              console.log(prixfinal);
+             }
+             else{
+              prixfinal= parseFloat(prixtotal)-parseFloat(prixaup3);
+              console.log(prixfinal);
+             }
+       }
+  
+      //  document.location.reload();  
  
        }
 
@@ -148,6 +176,7 @@ else {
           }
        }
          localStorage.setItem('canape',JSON.stringify(new_array));
+
          document.location.reload();  
 }}); 
     })}}
