@@ -134,16 +134,22 @@ else {
               quantitemodif = parseFloat(quantitemodif)+parseFloat(keycanape[b].quantite);
               console.log("quantite");
               console.log(keycanape[b].quantite);
-             if ((parseFloat(canapequantapres)-parseFloat(quantitecanap))>parseFloat(quantitecanap)){
-              prixfinal= parseFloat(prixtotal)+parseFloat(prixaup3);
-              console.log(prixfinal);
-             }
-             else{
-              prixfinal= parseFloat(prixtotal)-parseFloat(prixaup3);
-              console.log(prixfinal);
-             }
        }
-  
+       addquantitetotalup(quantitemodif);
+       let diffquant =parseFloat(canapequantapres)-parseFloat(quantitecanap);
+       console.log("diffquant");
+       console.log(diffquant);
+       if (parseFloat(canapequantapres)>parseFloat(quantitecanap)){
+        prixfinal= parseFloat(prixtotal)+(parseFloat(prixaup3)*parseFloat(diffquant));
+        addprixtotalup(prixfinal);
+        console.log(prixfinal);
+       }
+       else{
+        prixfinal= parseFloat(prixtotal)+(parseFloat(prixaup3)*parseFloat(diffquant));
+        addprixtotalup(prixfinal);
+        console.log(prixfinal);
+       }
+
       //  document.location.reload();  
  
        }
